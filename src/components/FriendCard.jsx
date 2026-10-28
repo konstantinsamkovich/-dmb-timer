@@ -1,3 +1,4 @@
+import Avatar from './Avatar.jsx'
 import {
   daysLabel,
   formatDateRu,
@@ -5,21 +6,13 @@ import {
   getServiceState,
 } from '../utils/serviceTime.js'
 
-function getInitials(name) {
-  return name
-    .split(' ')
-    .slice(0, 2)
-    .map((part) => part.charAt(0))
-    .join('')
-    .toUpperCase()
-}
-
 const pad = (value) => String(value).padStart(2, '0')
 
 function FriendCard({ friend, now, index }) {
   const { ended, percent, remaining } = getServiceState(friend, now)
   const countdown = getCountdown(remaining)
-  const displayPercent = ended ? 100 : Math.min(99, Math.round(percent))
+  const progressPercent = ended ? 100 : Math.min(99.999, percent)
+  const displayPercent = progressPercent.toFixed(3)
 
   const cells = [
     { value: String(countdown.days), label: 'дней' },
@@ -39,9 +32,7 @@ function FriendCard({ friend, now, index }) {
       aria-label={`${friend.name}: ${ended ? 'служба завершена' : 'до демобилизации'}`}
     >
       <header className="card-head">
-        <div className="avatar" aria-hidden="true">
-          {getInitials(friend.name)}
-        </div>
+        <Avatar id={friend.id} name={friend.name} photo={friend.avatar} />
         <div className="identity">
           <h2 className="friend-name">{friend.name}</h2>
           <p className="friend-unit">{friend.unit}</p>
@@ -78,10 +69,10 @@ function FriendCard({ friend, now, index }) {
           role="progressbar"
           aria-valuemin="0"
           aria-valuemax="100"
-          aria-valuenow={displayPercent}
+          aria-valuenow={progressPercent}
           aria-label={`Прогресс службы ${friend.name}`}
         >
-          <div className="progress-fill" style={{ width: `${displayPercent}%` }} />
+          <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
+import Avatar from './components/Avatar.jsx'
 import FriendCard from './components/FriendCard.jsx'
-import { friends } from './data/friends.js'
+import { friends, waitingFriends } from './data/friends.js'
 import { DAY_MS, daysLabel, getServiceState } from './utils/serviceTime.js'
 import './App.css'
 
@@ -86,6 +87,32 @@ function App() {
           <FriendCard key={friend.id} friend={friend} now={now} index={index} />
         ))}
       </main>
+
+      <section className="waiting" aria-labelledby="waiting-title">
+        <div className="waiting-head">
+          <h2 className="waiting-title" id="waiting-title">
+            Книжечка ожидающих
+          </h2>
+          <p className="waiting-subtitle">
+            Не забрали в этот призыв — оба ждут до марта
+          </p>
+        </div>
+
+        <div className="waiting-grid">
+          {waitingFriends.map((friend) => (
+            <article className="waiting-card" key={friend.id}>
+              <Avatar id={friend.id} name={friend.name} photo={friend.avatar} />
+              <div className="waiting-identity">
+                <h3 className="waiting-name">{friend.name}</h3>
+                <span className="waiting-status">
+                  <span className="waiting-dot" aria-hidden="true" />
+                  Ждёт до марта
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <footer className="site-footer">
         <span className="footer-line" aria-hidden="true" />
