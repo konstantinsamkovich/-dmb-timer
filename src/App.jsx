@@ -29,7 +29,7 @@ function App() {
 
     for (const friend of friends) {
       const state = getServiceState(friend, now)
-      if (state.ended) continue
+      if (!state.started || state.ended) continue
 
       active += 1
       const daysLeft = Math.ceil(state.remaining / DAY_MS)
@@ -52,7 +52,7 @@ function App() {
         </p>
 
         <h1 className="hero-title">
-          ДМБ <span>Таймер</span>
+          Ватрушный ДМБ <span>Таймер</span>
         </h1>
 
         <p className="hero-subtitle">
@@ -101,7 +101,7 @@ function App() {
         <div className="waiting-grid">
           {waitingFriends.map((friend) => (
             <article className="waiting-card" key={friend.id}>
-              <Avatar id={friend.id} name={friend.name} photo={friend.avatar} />
+              <Avatar name={friend.name} photo={friend.avatar} />
               <div className="waiting-identity">
                 <h3 className="waiting-name">{friend.name}</h3>
                 <span className="waiting-status">

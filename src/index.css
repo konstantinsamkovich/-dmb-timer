@@ -1,21 +1,21 @@
 :root {
-  --bg: #0a0c08;
-  --card-top: rgba(35, 42, 28, 0.88);
-  --card-bottom: rgba(15, 18, 13, 0.96);
-  --border: rgba(154, 168, 106, 0.16);
-  --olive: #9aa86a;
-  --olive-bright: #c6d494;
-  --khaki: #b9b28a;
-  --gold: #d8c88c;
-  --text: #eceee0;
-  --muted: #969d85;
-  --muted-dim: #737a65;
+  --bg: #f6faff;
+  --card-top: rgba(255, 255, 255, 0.92);
+  --card-bottom: rgba(242, 248, 255, 0.96);
+  --border: rgba(132, 174, 219, 0.26);
+  --sky: #8ec8ef;
+  --sky-bright: #2f7fbe;
+  --pink: #f3a9c7;
+  --rose: #d9578a;
+  --text: #25324a;
+  --muted: #5f7189;
+  --muted-dim: #8b9bb0;
   --sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --shadow-card:
-    0 26px 60px -34px rgba(0, 0, 0, 0.95),
-    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    0 24px 55px -32px rgba(74, 112, 160, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-  color-scheme: dark;
+  color-scheme: light;
   font: 16px/1.5 var(--sans);
   letter-spacing: 0.01em;
   color: var(--text);
@@ -34,10 +34,10 @@ body {
   margin: 0;
   min-height: 100svh;
   background:
-    radial-gradient(1100px 560px at 12% -8%, rgba(154, 168, 106, 0.16), transparent 62%),
-    radial-gradient(900px 520px at 92% 2%, rgba(196, 180, 120, 0.08), transparent 60%),
-    radial-gradient(800px 600px at 50% 110%, rgba(120, 132, 80, 0.08), transparent 65%),
-    linear-gradient(180deg, #0b0e09 0%, #090b07 60%, #080a06 100%);
+    radial-gradient(1100px 560px at 12% -8%, rgba(142, 200, 239, 0.34), transparent 62%),
+    radial-gradient(900px 520px at 92% 2%, rgba(243, 169, 199, 0.28), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(186, 220, 245, 0.28), transparent 65%),
+    linear-gradient(180deg, #fbfdff 0%, #f4faff 60%, #fdf6fa 100%);
   background-attachment: fixed;
 }
 
@@ -48,8 +48,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(236, 238, 224, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(236, 238, 224, 0.028) 1px, transparent 1px);
+    linear-gradient(rgba(80, 125, 175, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 125, 175, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 20%, transparent 78%);
   mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 20%, transparent 78%);
@@ -63,13 +63,14 @@ body::before {
 
 h1,
 h2,
+h3,
 p {
   margin: 0;
 }
 
 ::selection {
-  background: rgba(174, 188, 116, 0.32);
-  color: #fff;
+  background: rgba(243, 169, 199, 0.55);
+  color: #1f2b40;
 }
 
 ::-webkit-scrollbar {
@@ -77,15 +78,15 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b0e09;
+  background: #f3f9ff;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 2px solid #0b0e09;
+  border: 2px solid #f3f9ff;
   border-radius: 999px;
-  background: #3b432c;
+  background: #c5dcef;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4c5638;
+  background: #a8c9e6;
 }

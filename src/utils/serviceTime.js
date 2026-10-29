@@ -31,12 +31,14 @@ export function getServiceState(friend, now) {
   const end = parseDate(friend.endDate).getTime()
   const total = end - start
   const remaining = end - now
+  const untilStart = start - now
+  const started = now >= start
   const ended = remaining <= 0
 
   let percent = 0
   if (ended) {
     percent = 100
-  } else if (total > 0 && now > start) {
+  } else if (started && total > 0) {
     percent = Math.min(100, ((now - start) / total) * 100)
   }
 
@@ -45,6 +47,8 @@ export function getServiceState(friend, now) {
     end,
     total,
     remaining: Math.max(0, remaining),
+    untilStart: Math.max(0, untilStart),
+    started,
     ended,
     percent,
   }

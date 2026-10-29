@@ -1,4 +1,34 @@
-export const friends = [
+const avatarModules = import.meta.glob(
+  '../assets/avatars/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  { eager: true, import: 'default' },
+)
+
+const avatarAliases = {
+  bober: ['bober', 'бобёр', 'бобер', 'бебер'],
+  volodko: ['volodko', 'володько'],
+  kostya: ['kostya', 'костя'],
+  lepeshka: ['lepeshka', 'лепешка', 'лепёшка'],
+  kovalev: ['kovalev', 'ковалев', 'ковалев димка', 'димка'],
+  egor: ['egor', 'егор', 'егор пидорюга'],
+}
+
+function getAvatar(id) {
+  const aliases = avatarAliases[id] ?? [id]
+  const entry = Object.entries(avatarModules).find(([path]) => {
+    const fileName = path
+      .split('/')
+      .pop()
+      .replace(/\.[^.]+$/, '')
+      .trim()
+      .toLocaleLowerCase('ru')
+
+    return aliases.includes(fileName)
+  })
+
+  return entry ? entry[1] : null
+}
+
+const friendList = [
   {
     id: 'bober',
     name: 'Бобёр',
@@ -29,7 +59,7 @@ export const friends = [
   },
 ]
 
-export const waitingFriends = [
+const waitingList = [
   {
     id: 'kovalev',
     name: 'Ковалев Димка',
@@ -39,3 +69,13 @@ export const waitingFriends = [
     name: 'Егор Пидорюга',
   },
 ]
+
+export const friends = friendList.map((friend) => ({
+  ...friend,
+  avatar: getAvatar(friend.id),
+}))
+
+export const waitingFriends = waitingList.map((friend) => ({
+  ...friend,
+  avatar: getAvatar(friend.id),
+}))

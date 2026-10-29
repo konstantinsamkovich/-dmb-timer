@@ -9,8 +9,9 @@ import {
 const pad = (value) => String(value).padStart(2, '0')
 
 function FriendCard({ friend, now, index }) {
-  const { ended, percent, remaining } = getServiceState(friend, now)
-  const countdown = getCountdown(remaining)
+  const { ended, started, percent, remaining, untilStart } = getServiceState(friend, now)
+  const upcoming = !started && !ended
+  const countdown = getCountdown(upcoming ? untilStart : remaining)
   const progressPercent = ended ? 100 : Math.min(99.999, percent)
   const displayPercent = progressPercent.toFixed(3)
 
@@ -23,23 +24,33 @@ function FriendCard({ friend, now, index }) {
 
   const timerLabel = ended
     ? 'Служба завершена'
-    : `До демобилизации осталось ${daysLabel(countdown.days)}, ${countdown.hours} ч ${countdown.minutes} мин ${countdown.seconds} с`
+    : `${upcoming ? 'До призыва' : 'До демобилизации'} осталось ${daysLabel(countdown.days)}, ${countdown.hours} ч ${countdown.minutes} мин ${countdown.seconds} с`
+
+  const statusText = ended ? 'ДМБ!' : upcoming ? 'Ждёт призыва' : 'На службе'
+  const statusClass = ended ? ' status-done' : upcoming ? ' status-upcoming' : ''
+  const cardClass = ended ? ' is-done' : upcoming ? ' is-upcoming' : ''
+  const ariaState = ended ? 'служба завершена' : upcoming ? 'ждёт призыва' : 'до демобилизации'
+  const progressLabel = ended
+    ? 'Служба завершена'
+    : upcoming
+      ? 'Служба ещё не началась'
+      : 'Служба пройдена'
 
   return (
     <article
-      className={`friend-card${ended ? ' is-done' : ''}`}
+      className={`friend-card${cardClass}`}
       style={{ '--i': index }}
-      aria-label={`${friend.name}: ${ended ? 'служба завершена' : 'до демобилизации'}`}
+      aria-label={`${friend.name}: ${ariaState}`}
     >
       <header className="card-head">
-        <Avatar id={friend.id} name={friend.name} photo={friend.avatar} />
+        <Avatar name={friend.name} photo={friend.avatar} />
         <div className="identity">
           <h2 className="friend-name">{friend.name}</h2>
           <p className="friend-unit">{friend.unit}</p>
         </div>
-        <span className={`status${ended ? ' status-done' : ''}`}>
+        <span className={`status${statusClass}`}>
           <span className="status-dot" aria-hidden="true" />
-          {ended ? 'ДМБ!' : 'На службе'}
+          {statusText}
         </span>
       </header>
 
@@ -61,7 +72,7 @@ function FriendCard({ friend, now, index }) {
 
       <div className="progress-block">
         <div className="progress-meta">
-          <span>{ended ? 'Служба завершена' : 'Служба пройдена'}</span>
+          <span>{progressLabel}</span>
           <span className="progress-value">{displayPercent}%</span>
         </div>
         <div
