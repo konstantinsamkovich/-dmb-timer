@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import Avatar from './components/Avatar.jsx'
 import FriendCard from './components/FriendCard.jsx'
-import { friends, waitingFriends } from './data/friends.js'
+import PatientCard from './components/PatientCard.jsx'
+import { friends, patients, waitingFriends } from './data/friends.js'
 import { DAY_MS, daysLabel, getServiceState } from './utils/serviceTime.js'
 import './App.css'
 
@@ -87,6 +88,23 @@ function App() {
           <FriendCard key={friend.id} friend={friend} now={now} index={index} />
         ))}
       </main>
+
+      <section className="patient" aria-labelledby="patient-title">
+        <div className="waiting-head">
+          <h2 className="waiting-title" id="patient-title">
+            Пациент дурдома
+          </h2>
+          <p className="waiting-subtitle">
+            Косит по дурке — точная дата выхода неизвестна
+          </p>
+        </div>
+
+        <div className="patient-grid">
+          {patients.map((patient, index) => (
+            <PatientCard key={patient.id} patient={patient} index={index} />
+          ))}
+        </div>
+      </section>
 
       <section className="waiting" aria-labelledby="waiting-title">
         <div className="waiting-head">

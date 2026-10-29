@@ -10,6 +10,7 @@ const avatarAliases = {
   lepeshka: ['lepeshka', 'лепешка', 'лепёшка'],
   kovalev: ['kovalev', 'ковалев', 'ковалев димка', 'димка'],
   egor: ['egor', 'егор', 'егор пидорюга'],
+  danik: ['danik', 'даник'],
 }
 
 function getAvatar(id) {
@@ -70,6 +71,13 @@ const waitingList = [
   },
 ]
 
+const patientList = [
+  {
+    id: 'danik',
+    name: 'Даник',
+  },
+]
+
 export const friends = friendList.map((friend) => ({
   ...friend,
   avatar: getAvatar(friend.id),
@@ -78,4 +86,9 @@ export const friends = friendList.map((friend) => ({
 export const waitingFriends = waitingList.map((friend) => ({
   ...friend,
   avatar: getAvatar(friend.id),
+}))
+
+export const patients = patientList.map((patient) => ({
+  ...patient,
+  avatar: getAvatar(patient.id),
 }))

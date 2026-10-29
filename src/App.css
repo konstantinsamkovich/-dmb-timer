@@ -553,6 +553,61 @@
   white-space: nowrap;
 }
 
+/* ---------- Patient ---------- */
+
+.patient {
+  margin-bottom: clamp(28px, 4vw, 44px);
+  padding: clamp(18px, 2.4vw, 24px);
+  border: 1px solid rgba(231, 122, 165, 0.24);
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.82), rgba(255, 244, 249, 0.9));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.patient-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.patient-grid .friend-card {
+  width: min(100%, 280px);
+}
+
+.patient-card .card-panel {
+  border-color: rgba(231, 122, 165, 0.3);
+}
+
+.patient-card .card-panel::before {
+  background: radial-gradient(480px 220px at 100% 0%, rgba(243, 169, 199, 0.2), transparent 68%);
+}
+
+.patient-card .card-panel::after {
+  background: linear-gradient(90deg, transparent, rgba(231, 122, 165, 0.55), transparent);
+}
+
+.status-patient {
+  border-color: rgba(231, 122, 165, 0.38);
+  background: rgba(243, 169, 199, 0.18);
+  color: var(--rose);
+}
+
+.status-patient .status-dot {
+  background: var(--rose);
+  box-shadow: 0 0 8px rgba(231, 122, 165, 0.6);
+  animation: none;
+}
+
+.countdown-unknown .time-cell .time-value {
+  color: var(--muted);
+}
+
+.countdown-unknown .time-value-unknown {
+  font-size: clamp(12px, 1.2vw, 14px);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-shadow: none;
+}
+
 /* ---------- Waiting list ---------- */
 
 .waiting {
@@ -727,6 +782,10 @@
     gap: 16px;
     padding: 58px 16px 18px;
     border-radius: 20px;
+  }
+
+  .patient-grid .friend-card {
+    width: 100%;
   }
 
   .card-avatar {
