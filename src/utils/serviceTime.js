@@ -26,6 +26,11 @@ export function formatDateRu(isoDate) {
   return `${day} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`
 }
 
+export function getDaysSince(isoDate, now) {
+  const start = parseDate(isoDate).getTime()
+  return Math.max(0, Math.floor((now - start) / DAY_MS))
+}
+
 export function getServiceState(friend, now) {
   const start = parseDate(friend.startDate).getTime()
   const end = parseDate(friend.endDate).getTime()
@@ -74,6 +79,10 @@ function pluralize(value, forms) {
   return forms[2]
 }
 
+export function daysWord(value) {
+  return pluralize(value, ['день', 'дня', 'дней'])
+}
+
 export function daysLabel(value) {
-  return `${value} ${pluralize(value, ['день', 'дня', 'дней'])}`
+  return `${value} ${daysWord(value)}`
 }

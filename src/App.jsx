@@ -101,7 +101,7 @@ function App() {
 
         <div className="patient-grid">
           {patients.map((patient, index) => (
-            <PatientCard key={patient.id} patient={patient} index={index} />
+            <PatientCard key={patient.id} patient={patient} now={now} index={index} />
           ))}
         </div>
       </section>

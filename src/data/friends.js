@@ -75,6 +75,7 @@ const patientList = [
   {
     id: 'danik',
     name: 'Даник',
+    startDate: '2026-10-22',
   },
 ]
 

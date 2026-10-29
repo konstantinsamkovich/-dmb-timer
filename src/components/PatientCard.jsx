@@ -1,18 +1,19 @@
 import Avatar from './Avatar.jsx'
+import {
+  daysLabel,
+  daysWord,
+  formatDateRu,
+  getDaysSince,
+} from '../utils/serviceTime.js'
 
-const cells = [
-  { label: 'дней' },
-  { label: 'часов' },
-  { label: 'минут' },
-  { label: 'секунд' },
-]
+function PatientCard({ patient, now, index }) {
+  const days = getDaysSince(patient.startDate, now)
 
-function PatientCard({ patient, index }) {
   return (
     <article
       className="friend-card patient-card"
       style={{ '--i': index }}
-      aria-label={`${patient.name}: косит по дурке`}
+      aria-label={`${patient.name}: косит по дурке, в дурдоме ${daysLabel(days)}`}
     >
       <div className="card-avatar">
         <Avatar name={patient.name} photo={patient.avatar} />
@@ -31,19 +32,19 @@ function PatientCard({ patient, index }) {
         </header>
 
         <div
-          className="countdown countdown-unknown"
-          role="group"
-          aria-label="Время выхода из дурдома неизвестно"
+          className="patient-counter"
+          aria-label={`${patient.name} находится в дурдоме ${daysLabel(days)}`}
         >
-          {cells.map((cell) => (
-            <div className="time-cell" key={cell.label}>
-              <span className="time-value time-value-unknown">неизвестно</span>
-              <span className="time-label">{cell.label}</span>
-            </div>
-          ))}
+          <span className="patient-counter-value">{days}</span>
+          <span className="patient-counter-unit">{daysWord(days)}</span>
+          <span className="patient-counter-label">уже в дурдоме</span>
         </div>
 
         <footer className="dates">
+          <div className="date-item">
+            <span className="date-label">В дурдоме с</span>
+            <span className="date-value">{formatDateRu(patient.startDate)}</span>
+          </div>
           <div className="date-item">
             <span className="date-label">Дата выхода</span>
             <span className="date-value date-value-unknown">неизвестно</span>
