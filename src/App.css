@@ -111,14 +111,22 @@
 
 .friend-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-  gap: clamp(16px, 2vw, 22px);
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: clamp(16px, 2vw, 22px);
+  row-gap: 64px;
+  padding-top: 58px;
   padding-bottom: clamp(48px, 7vw, 80px);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 560px) {
   .friend-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .friend-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -128,22 +136,31 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  padding: clamp(20px, 2.4vw, 28px);
+  align-items: center;
+  animation: card-in 0.8s cubic-bezier(0.16, 0.8, 0.3, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 110ms);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.card-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 64px 18px 20px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 24px;
   background: linear-gradient(160deg, var(--card-top) 0%, rgba(250, 253, 255, 0.95) 55%, var(--card-bottom) 100%);
   box-shadow: var(--shadow-card);
-  animation: card-in 0.8s cubic-bezier(0.16, 0.8, 0.3, 1) backwards;
-  animation-delay: calc(var(--i, 0) * 110ms);
   transition:
-    transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1),
     border-color 0.45s ease,
     box-shadow 0.45s ease;
 }
 
-.friend-card::before {
+.card-panel::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -151,7 +168,7 @@
   background: radial-gradient(480px 220px at 100% 0%, rgba(142, 200, 239, 0.16), transparent 68%);
 }
 
-.friend-card::after {
+.card-panel::after {
   content: '';
   position: absolute;
   top: 0;
@@ -163,33 +180,53 @@
   background: linear-gradient(90deg, transparent, rgba(142, 200, 239, 0.55), transparent);
 }
 
-.is-done {
+.card-avatar {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -50px;
+}
+
+.card-avatar .avatar {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff;
+  border-radius: 28px;
+  font-size: 30px;
+  box-shadow:
+    0 0 0 1px rgba(142, 200, 239, 0.55),
+    0 16px 32px -14px rgba(47, 127, 190, 0.5);
+}
+
+.is-done .card-panel {
   border-color: rgba(231, 122, 165, 0.3);
 }
 
-.is-done::before {
+.is-done .card-panel::before {
   background: radial-gradient(480px 220px at 100% 0%, rgba(243, 169, 199, 0.18), transparent 68%);
 }
 
-.is-done::after {
+.is-done .card-panel::after {
   background: linear-gradient(90deg, transparent, rgba(231, 122, 165, 0.6), transparent);
 }
 
-.is-upcoming {
+.is-upcoming .card-panel {
   border-color: rgba(139, 160, 184, 0.38);
 }
 
-.is-upcoming::before {
+.is-upcoming .card-panel::before {
   background: radial-gradient(480px 220px at 100% 0%, rgba(142, 200, 239, 0.12), transparent 68%);
 }
 
-.is-upcoming::after {
+.is-upcoming .card-panel::after {
   background: linear-gradient(90deg, transparent, rgba(139, 160, 184, 0.45), transparent);
 }
 
 @media (hover: hover) {
   .friend-card:hover {
     transform: translateY(-5px);
+  }
+
+  .friend-card:hover .card-panel {
     border-color: rgba(142, 200, 239, 0.55);
     box-shadow:
       0 34px 70px -34px rgba(74, 112, 160, 0.38),
@@ -197,11 +234,11 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.85);
   }
 
-  .is-done:hover {
+  .is-done:hover .card-panel {
     border-color: rgba(231, 122, 165, 0.55);
   }
 
-  .is-upcoming:hover {
+  .is-upcoming:hover .card-panel {
     border-color: rgba(139, 160, 184, 0.6);
   }
 }
@@ -210,8 +247,10 @@
   position: relative;
   z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  text-align: center;
 }
 
 .avatar-slot {
@@ -248,13 +287,14 @@
 }
 
 .identity {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
 }
 
 .friend-name {
   color: var(--text);
-  font-size: clamp(17px, 2vw, 19px);
+  font-size: clamp(19px, 1.6vw, 22px);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -264,7 +304,7 @@
   margin-top: 3px;
   overflow: hidden;
   color: var(--muted-dim);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.02em;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -325,7 +365,7 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -335,7 +375,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 14px 4px 11px;
+  padding: 12px 4px 10px;
   border: 1px solid rgba(132, 174, 219, 0.18);
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(237, 246, 255, 0.85));
@@ -344,7 +384,7 @@
 
 .time-value {
   color: #25324a;
-  font-size: clamp(24px, 3.6vw, 36px);
+  font-size: clamp(26px, 2.4vw, 32px);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -410,12 +450,14 @@
 
 .progress-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
+  gap: 4px 8px;
   color: var(--muted-dim);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -474,22 +516,25 @@
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
-  gap: 14px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   padding-top: 16px;
   border-top: 1px dashed rgba(132, 174, 219, 0.2);
+  text-align: center;
 }
 
 .date-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3px;
   min-width: 0;
 }
 
 .date-item:last-child {
-  align-items: flex-end;
-  text-align: right;
+  align-items: center;
+  text-align: center;
 }
 
 .date-label {
@@ -549,18 +594,18 @@
 .waiting-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 14px;
+  padding: 14px 16px;
   border: 1px dashed rgba(132, 174, 219, 0.28);
-  border-radius: 16px;
+  border-radius: 18px;
   background: rgba(255, 255, 255, 0.65);
 }
 
 .waiting-card .avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 13px;
-  font-size: 15px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  font-size: 20px;
 }
 
 .waiting-identity {
@@ -674,27 +719,33 @@
 
   .friend-grid {
     grid-template-columns: minmax(0, 1fr);
+    row-gap: 56px;
+    padding-top: 50px;
   }
 
-  .friend-card {
-    gap: 18px;
-    padding: 18px;
+  .card-panel {
+    gap: 16px;
+    padding: 58px 16px 18px;
     border-radius: 20px;
   }
 
-  .avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 13px;
-    font-size: 14px;
+  .card-avatar {
+    margin-bottom: -44px;
+  }
+
+  .card-avatar .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 24px;
+    font-size: 26px;
   }
 
   .card-head {
-    gap: 10px;
+    gap: 9px;
   }
 
   .friend-name {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .status {
@@ -704,11 +755,11 @@
   }
 
   .time-cell {
-    padding: 12px 3px 9px;
+    padding: 11px 3px 9px;
   }
 
   .time-value {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .time-label {

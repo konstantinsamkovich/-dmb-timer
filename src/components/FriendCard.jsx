@@ -42,61 +42,66 @@ function FriendCard({ friend, now, index }) {
       style={{ '--i': index }}
       aria-label={`${friend.name}: ${ariaState}`}
     >
-      <header className="card-head">
+      <div className="card-avatar">
         <Avatar name={friend.name} photo={friend.avatar} />
-        <div className="identity">
-          <h2 className="friend-name">{friend.name}</h2>
-          <p className="friend-unit">{friend.unit}</p>
-        </div>
-        <span className={`status${statusClass}`}>
-          <span className="status-dot" aria-hidden="true" />
-          {statusText}
-        </span>
-      </header>
-
-      {ended ? (
-        <div className="demob">
-          <span className="demob-word">ДМБ!</span>
-          <p className="demob-sub">Служба завершена · добро пожаловать домой</p>
-        </div>
-      ) : (
-        <div className="countdown" role="timer" aria-live="off" aria-label={timerLabel}>
-          {cells.map((cell) => (
-            <div className="time-cell" key={cell.label}>
-              <span className="time-value">{cell.value}</span>
-              <span className="time-label">{cell.label}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      <div className="progress-block">
-        <div className="progress-meta">
-          <span>{progressLabel}</span>
-          <span className="progress-value">{displayPercent}%</span>
-        </div>
-        <div
-          className="progress-track"
-          role="progressbar"
-          aria-valuemin="0"
-          aria-valuemax="100"
-          aria-valuenow={progressPercent}
-          aria-label={`Прогресс службы ${friend.name}`}
-        >
-          <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
-        </div>
       </div>
 
-      <footer className="dates">
-        <div className="date-item">
-          <span className="date-label">Призыв</span>
-          <span className="date-value">{formatDateRu(friend.startDate)}</span>
+      <div className="card-panel">
+        <header className="card-head">
+          <div className="identity">
+            <h2 className="friend-name">{friend.name}</h2>
+            <p className="friend-unit">{friend.unit}</p>
+          </div>
+          <span className={`status${statusClass}`}>
+            <span className="status-dot" aria-hidden="true" />
+            {statusText}
+          </span>
+        </header>
+
+        {ended ? (
+          <div className="demob">
+            <span className="demob-word">ДМБ!</span>
+            <p className="demob-sub">Служба завершена · добро пожаловать домой</p>
+          </div>
+        ) : (
+          <div className="countdown" role="timer" aria-live="off" aria-label={timerLabel}>
+            {cells.map((cell) => (
+              <div className="time-cell" key={cell.label}>
+                <span className="time-value">{cell.value}</span>
+                <span className="time-label">{cell.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="progress-block">
+          <div className="progress-meta">
+            <span>{progressLabel}</span>
+            <span className="progress-value">{displayPercent}%</span>
+          </div>
+          <div
+            className="progress-track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow={progressPercent}
+            aria-label={`Прогресс службы ${friend.name}`}
+          >
+            <div className="progress-fill" style={{ width: `${progressPercent}%` }} />
+          </div>
         </div>
-        <div className="date-item">
-          <span className="date-label">Демобилизация</span>
-          <span className="date-value">{formatDateRu(friend.endDate)}</span>
-        </div>
-      </footer>
+
+        <footer className="dates">
+          <div className="date-item">
+            <span className="date-label">Призыв</span>
+            <span className="date-value">{formatDateRu(friend.startDate)}</span>
+          </div>
+          <div className="date-item">
+            <span className="date-label">Демобилизация</span>
+            <span className="date-value">{formatDateRu(friend.endDate)}</span>
+          </div>
+        </footer>
+      </div>
     </article>
   )
 }

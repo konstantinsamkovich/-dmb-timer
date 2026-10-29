@@ -91,7 +91,7 @@ function App() {
       <section className="waiting" aria-labelledby="waiting-title">
         <div className="waiting-head">
           <h2 className="waiting-title" id="waiting-title">
-            Книжечка ожидающих
+            Список пидорков
           </h2>
           <p className="waiting-subtitle">
             Не забрали в этот призыв — оба ждут до марта
