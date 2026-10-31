@@ -55,8 +55,8 @@ const friendList = [
     id: 'lepeshka',
     name: 'Лепешка',
     unit: '—',
-    startDate: '2026-11-02',
-    endDate: '2027-11-02',
+    startDate: '2026-11-04',
+    endDate: '2027-11-04',
   },
 ]
 
