@@ -2,12 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import Avatar from './components/Avatar.jsx'
 import FriendCard from './components/FriendCard.jsx'
 import PatientCard from './components/PatientCard.jsx'
+import ThemeToggle from './components/ThemeToggle.jsx'
 import { friends, patients, waitingFriends } from './data/friends.js'
+import { useTheme } from './hooks/useTheme.js'
 import { DAY_MS, daysLabel, getServiceState } from './utils/serviceTime.js'
 import './App.css'
 
 function App() {
   const [now, setNow] = useState(() => Date.now())
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const tick = () => setNow(Date.now())
@@ -44,6 +47,8 @@ function App() {
 
   return (
     <div className="app">
+      <ThemeToggle theme={theme} onToggle={toggleTheme} />
+
       <header className="hero">
         <p className="hero-badge">
           <span className="hero-badge-star" aria-hidden="true">

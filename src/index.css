@@ -1,6 +1,7 @@
 :root {
   --bg: #f6faff;
   --card-top: rgba(255, 255, 255, 0.92);
+  --card-mid: rgba(250, 253, 255, 0.95);
   --card-bottom: rgba(242, 248, 255, 0.96);
   --border: rgba(132, 174, 219, 0.26);
   --sky: #8ec8ef;
@@ -15,6 +16,88 @@
     0 24px 55px -32px rgba(74, 112, 160, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
+  --body-bg:
+    radial-gradient(1100px 560px at 12% -8%, rgba(142, 200, 239, 0.34), transparent 62%),
+    radial-gradient(900px 520px at 92% 2%, rgba(243, 169, 199, 0.28), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(186, 220, 245, 0.28), transparent 65%),
+    linear-gradient(180deg, #fbfdff 0%, #f4faff 60%, #fdf6fa 100%);
+  --grid-line: rgba(80, 125, 175, 0.05);
+  --selection-bg: rgba(243, 169, 199, 0.55);
+  --selection-color: #1f2b40;
+  --scroll-track: #f3f9ff;
+  --scroll-thumb: #c5dcef;
+  --scroll-thumb-hover: #a8c9e6;
+
+  --inset-highlight: rgba(255, 255, 255, 0.8);
+  --inset-highlight-strong: rgba(255, 255, 255, 0.9);
+  --badge-bg: rgba(142, 200, 239, 0.12);
+  --divider-blue: rgba(142, 200, 239, 0.5);
+  --card-glow-blue: rgba(142, 200, 239, 0.16);
+  --card-line-blue: rgba(142, 200, 239, 0.55);
+  --card-hover-shadow: rgba(74, 112, 160, 0.38);
+  --card-hover-ring: rgba(142, 200, 239, 0.2);
+
+  --done-card-border: rgba(231, 122, 165, 0.3);
+  --done-card-glow: rgba(243, 169, 199, 0.18);
+  --done-card-line: rgba(231, 122, 165, 0.6);
+  --done-status-border: rgba(231, 122, 165, 0.38);
+  --done-status-bg: rgba(243, 169, 199, 0.18);
+  --done-dot-glow: rgba(231, 122, 165, 0.6);
+  --upcoming-card-border: rgba(139, 160, 184, 0.38);
+  --upcoming-card-glow: rgba(142, 200, 239, 0.12);
+  --upcoming-line: rgba(139, 160, 184, 0.45);
+  --upcoming-hover-border: rgba(139, 160, 184, 0.6);
+  --upcoming-status-border: rgba(139, 160, 184, 0.38);
+  --upcoming-status-bg: rgba(139, 160, 184, 0.14);
+  --upcoming-dot-glow: rgba(139, 160, 184, 0.55);
+
+  --avatar-border: #fff;
+  --avatar-border-blue: rgba(142, 200, 239, 0.5);
+  --avatar-bg-start: rgba(211, 235, 250, 0.95);
+  --avatar-bg-end: rgba(243, 169, 199, 0.55);
+  --avatar-shadow-blue: rgba(47, 127, 190, 0.4);
+  --dot-glow-blue: rgba(47, 127, 190, 0.6);
+  --status-blue-border: rgba(142, 200, 239, 0.32);
+  --status-blue-bg: rgba(142, 200, 239, 0.16);
+
+  --cell-border: rgba(132, 174, 219, 0.18);
+  --cell-bg-start: rgba(255, 255, 255, 0.95);
+  --cell-bg-end: rgba(237, 246, 255, 0.85);
+  --time-value: #25324a;
+  --time-glow: rgba(142, 200, 239, 0.3);
+
+  --demob-start: #f9d3e3;
+  --demob-end: #b84272;
+  --track-bg: rgba(132, 174, 219, 0.16);
+  --track-inset: rgba(47, 127, 190, 0.12);
+  --progress-start: #8ec8ef;
+  --progress-mid: #7fb8e8;
+  --progress-end: #e77aa5;
+  --progress-glow: rgba(142, 200, 239, 0.5);
+  --sheen-highlight: rgba(255, 255, 255, 0.35);
+  --dash-border: rgba(132, 174, 219, 0.2);
+  --dash-border-strong: rgba(132, 174, 219, 0.28);
+
+  --hero-stats-start: rgba(255, 255, 255, 0.86);
+  --hero-stats-end: rgba(245, 250, 255, 0.9);
+  --panel-border: rgba(132, 174, 219, 0.2);
+  --panel-blue-start: rgba(255, 255, 255, 0.8);
+  --panel-blue-end: rgba(241, 248, 255, 0.9);
+  --panel-pink-border: rgba(231, 122, 165, 0.24);
+  --panel-pink-start: rgba(255, 255, 255, 0.82);
+  --panel-pink-end: rgba(255, 244, 249, 0.9);
+  --counter-border: rgba(231, 122, 165, 0.2);
+  --counter-bg-start: rgba(255, 255, 255, 0.95);
+  --counter-bg-end: rgba(255, 241, 247, 0.85);
+  --waiting-card-bg: rgba(255, 255, 255, 0.65);
+  --footer-note: rgba(107, 124, 147, 0.75);
+
+  --toggle-bg: rgba(255, 255, 255, 0.8);
+  --toggle-border-hover: rgba(142, 200, 239, 0.55);
+  --toggle-shadow:
+    0 10px 24px -14px rgba(47, 127, 190, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
   color-scheme: light;
   font: 16px/1.5 var(--sans);
   letter-spacing: 0.01em;
@@ -26,6 +109,108 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0b1322;
+  --card-top: rgba(23, 34, 54, 0.94);
+  --card-mid: rgba(17, 27, 45, 0.96);
+  --card-bottom: rgba(13, 21, 37, 0.97);
+  --border: rgba(126, 169, 214, 0.22);
+  --sky: #8ec8ef;
+  --sky-bright: #7cc0f0;
+  --pink: #f3a9c7;
+  --rose: #f78fb8;
+  --text: #e8f0fb;
+  --muted: #a7b8cd;
+  --muted-dim: #7d8fa8;
+  --shadow-card:
+    0 24px 55px -32px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  --body-bg:
+    radial-gradient(1100px 560px at 12% -8%, rgba(38, 84, 128, 0.35), transparent 62%),
+    radial-gradient(900px 520px at 92% 2%, rgba(120, 45, 82, 0.3), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(28, 58, 92, 0.32), transparent 65%),
+    linear-gradient(180deg, #0c1525 0%, #0a1120 60%, #0e1424 100%);
+  --grid-line: rgba(124, 192, 240, 0.055);
+  --selection-bg: rgba(247, 143, 184, 0.4);
+  --selection-color: #f3f7ff;
+  --scroll-track: #0d1525;
+  --scroll-thumb: #2a3c58;
+  --scroll-thumb-hover: #3a5174;
+
+  --inset-highlight: rgba(255, 255, 255, 0.06);
+  --inset-highlight-strong: rgba(255, 255, 255, 0.08);
+  --badge-bg: rgba(124, 192, 240, 0.1);
+  --divider-blue: rgba(124, 192, 240, 0.35);
+  --card-glow-blue: rgba(124, 192, 240, 0.1);
+  --card-line-blue: rgba(124, 192, 240, 0.32);
+  --card-hover-shadow: rgba(0, 0, 0, 0.55);
+  --card-hover-ring: rgba(124, 192, 240, 0.18);
+
+  --done-card-border: rgba(247, 143, 184, 0.3);
+  --done-card-glow: rgba(247, 143, 184, 0.14);
+  --done-card-line: rgba(247, 143, 184, 0.45);
+  --done-status-border: rgba(247, 143, 184, 0.34);
+  --done-status-bg: rgba(247, 143, 184, 0.14);
+  --done-dot-glow: rgba(247, 143, 184, 0.65);
+  --upcoming-card-border: rgba(141, 160, 184, 0.32);
+  --upcoming-card-glow: rgba(124, 192, 240, 0.08);
+  --upcoming-line: rgba(141, 160, 184, 0.35);
+  --upcoming-hover-border: rgba(141, 160, 184, 0.45);
+  --upcoming-status-border: rgba(141, 160, 184, 0.32);
+  --upcoming-status-bg: rgba(141, 160, 184, 0.12);
+  --upcoming-dot-glow: rgba(141, 160, 184, 0.5);
+
+  --avatar-border: #1a2740;
+  --avatar-border-blue: rgba(124, 192, 240, 0.38);
+  --avatar-bg-start: rgba(46, 70, 101, 0.95);
+  --avatar-bg-end: rgba(120, 62, 90, 0.6);
+  --avatar-shadow-blue: rgba(0, 0, 0, 0.45);
+  --dot-glow-blue: rgba(124, 192, 240, 0.7);
+  --status-blue-border: rgba(124, 192, 240, 0.3);
+  --status-blue-bg: rgba(124, 192, 240, 0.14);
+
+  --cell-border: rgba(126, 169, 214, 0.16);
+  --cell-bg-start: rgba(255, 255, 255, 0.065);
+  --cell-bg-end: rgba(255, 255, 255, 0.035);
+  --time-value: #e8f0fb;
+  --time-glow: rgba(124, 192, 240, 0.2);
+
+  --demob-start: #ffd9ea;
+  --demob-end: #d4568a;
+  --track-bg: rgba(124, 192, 240, 0.12);
+  --track-inset: rgba(0, 0, 0, 0.3);
+  --progress-start: #7cc0f0;
+  --progress-mid: #6fb0e6;
+  --progress-end: #f78fb8;
+  --progress-glow: rgba(124, 192, 240, 0.4);
+  --sheen-highlight: rgba(255, 255, 255, 0.18);
+  --dash-border: rgba(126, 169, 214, 0.16);
+  --dash-border-strong: rgba(126, 169, 214, 0.2);
+
+  --hero-stats-start: rgba(23, 34, 54, 0.82);
+  --hero-stats-end: rgba(17, 27, 45, 0.88);
+  --panel-border: rgba(126, 169, 214, 0.2);
+  --panel-blue-start: rgba(22, 33, 52, 0.85);
+  --panel-blue-end: rgba(17, 27, 45, 0.9);
+  --panel-pink-border: rgba(247, 143, 184, 0.22);
+  --panel-pink-start: rgba(33, 26, 43, 0.85);
+  --panel-pink-end: rgba(40, 26, 38, 0.9);
+  --counter-border: rgba(247, 143, 184, 0.2);
+  --counter-bg-start: rgba(255, 255, 255, 0.07);
+  --counter-bg-end: rgba(247, 143, 184, 0.06);
+  --waiting-card-bg: rgba(255, 255, 255, 0.045);
+  --footer-note: rgba(148, 167, 190, 0.7);
+
+  --toggle-bg: rgba(23, 34, 54, 0.85);
+  --toggle-border-hover: rgba(124, 192, 240, 0.5);
+  --toggle-shadow:
+    0 10px 24px -12px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -33,11 +218,7 @@
 body {
   margin: 0;
   min-height: 100svh;
-  background:
-    radial-gradient(1100px 560px at 12% -8%, rgba(142, 200, 239, 0.34), transparent 62%),
-    radial-gradient(900px 520px at 92% 2%, rgba(243, 169, 199, 0.28), transparent 60%),
-    radial-gradient(800px 600px at 50% 110%, rgba(186, 220, 245, 0.28), transparent 65%),
-    linear-gradient(180deg, #fbfdff 0%, #f4faff 60%, #fdf6fa 100%);
+  background: var(--body-bg);
   background-attachment: fixed;
 }
 
@@ -48,8 +229,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(80, 125, 175, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(80, 125, 175, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
   -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 20%, transparent 78%);
   mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 20%, transparent 78%);
@@ -69,8 +250,8 @@ p {
 }
 
 ::selection {
-  background: rgba(243, 169, 199, 0.55);
-  color: #1f2b40;
+  background: var(--selection-bg);
+  color: var(--selection-color);
 }
 
 ::-webkit-scrollbar {
@@ -78,15 +259,62 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f3f9ff;
+  background: var(--scroll-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 2px solid #f3f9ff;
+  border: 2px solid var(--scroll-track);
   border-radius: 999px;
-  background: #c5dcef;
+  background: var(--scroll-thumb);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8c9e6;
+  background: var(--scroll-thumb-hover);
+}
+
+/* ---------- Theme toggle ---------- */
+
+.theme-toggle {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--toggle-bg);
+  box-shadow: var(--toggle-shadow);
+  color: var(--text);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--sky-bright);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .theme-toggle:hover {
+    border-color: var(--toggle-border-hover);
+    transform: translateY(-1px);
+  }
 }
