@@ -677,7 +677,7 @@
 
 .waiting-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   padding: 14px 16px;
   border: 1px dashed var(--dash-border-strong);
@@ -717,6 +717,21 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.waiting-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.waiting-note {
+  color: var(--muted-dim);
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .waiting-dot {

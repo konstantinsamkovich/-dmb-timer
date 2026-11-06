@@ -51,33 +51,34 @@ const friendList = [
     startDate: '2026-11-02',
     endDate: '2027-11-02',
   },
-  {
-    id: 'lepeshka',
-    name: 'Лепешка',
-    unit: '—',
-    startDate: '2026-11-04',
-    endDate: '2027-11-04',
-  },
 ]
 
 const waitingList = [
   {
     id: 'kovalev',
     name: 'Ковалев Димка',
+    status: 'Ждёт до марта',
   },
   {
     id: 'egor',
     name: 'Егор Пидорюга',
+    status: 'Ждёт до марта',
   },
-]
-
-const patientList = [
+  {
+    id: 'lepeshka',
+    name: 'Лепешка',
+    status: 'Повестка на март',
+    notes: ['Так и не пошёл на службу'],
+  },
   {
     id: 'danik',
     name: 'Даник',
-    startDate: '2026-10-22',
+    status: 'Повестка на март',
+    notes: ['Выпускник дурдома', 'Отлежал в дурке 14 дней'],
   },
 ]
+
+const patientList = []
 
 export const friends = friendList.map((friend) => ({
   ...friend,

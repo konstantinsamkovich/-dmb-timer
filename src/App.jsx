@@ -94,22 +94,24 @@ function App() {
         ))}
       </main>
 
-      <section className="patient" aria-labelledby="patient-title">
-        <div className="waiting-head">
-          <h2 className="waiting-title" id="patient-title">
-            Пациент дурдома
-          </h2>
-          <p className="waiting-subtitle">
-            Косит по дурке — точная дата выхода неизвестна
-          </p>
-        </div>
+      {patients.length > 0 && (
+        <section className="patient" aria-labelledby="patient-title">
+          <div className="waiting-head">
+            <h2 className="waiting-title" id="patient-title">
+              Пациент дурдома
+            </h2>
+            <p className="waiting-subtitle">
+              Косит по дурке — точная дата выхода неизвестна
+            </p>
+          </div>
 
-        <div className="patient-grid">
-          {patients.map((patient, index) => (
-            <PatientCard key={patient.id} patient={patient} now={now} index={index} />
-          ))}
-        </div>
-      </section>
+          <div className="patient-grid">
+            {patients.map((patient, index) => (
+              <PatientCard key={patient.id} patient={patient} now={now} index={index} />
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="waiting" aria-labelledby="waiting-title">
         <div className="waiting-head">
@@ -117,7 +119,7 @@ function App() {
             Список пидорков
           </h2>
           <p className="waiting-subtitle">
-            Не забрали в этот призыв — оба ждут до марта
+            Не забрали в этот призыв — ждут повестки на март
           </p>
         </div>
 
@@ -129,8 +131,17 @@ function App() {
                 <h3 className="waiting-name">{friend.name}</h3>
                 <span className="waiting-status">
                   <span className="waiting-dot" aria-hidden="true" />
-                  Ждёт до марта
+                  {friend.status}
                 </span>
+                {friend.notes?.length > 0 && (
+                  <ul className="waiting-notes">
+                    {friend.notes.map((note) => (
+                      <li className="waiting-note" key={note}>
+                        {note}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </article>
           ))}
