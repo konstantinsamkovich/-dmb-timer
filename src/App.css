@@ -110,23 +110,25 @@
 /* ---------- Grid ---------- */
 
 .friend-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   column-gap: clamp(16px, 2vw, 22px);
   row-gap: 64px;
   padding-top: 58px;
   padding-bottom: clamp(48px, 7vw, 80px);
 }
 
-@media (min-width: 560px) {
-  .friend-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.friend-grid .friend-card {
+  flex: 1 1 240px;
+  min-width: 0;
+  max-width: 280px;
 }
 
-@media (min-width: 1080px) {
-  .friend-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+@media (max-width: 559px) {
+  .friend-grid .friend-card {
+    flex-basis: 100%;
+    max-width: none;
   }
 }
 
@@ -817,7 +819,6 @@
   }
 
   .friend-grid {
-    grid-template-columns: minmax(0, 1fr);
     row-gap: 56px;
     padding-top: 50px;
   }
