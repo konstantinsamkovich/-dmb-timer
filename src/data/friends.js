@@ -11,6 +11,7 @@ const avatarAliases = {
   kovalev: ['kovalev', 'ковалев', 'ковалев димка', 'димка'],
   egor: ['egor', 'егор', 'егор пидорюга'],
   danik: ['danik', 'даник'],
+  dmetroid: ['dmetroid', 'дметроид'],
 }
 
 function getAvatar(id) {
@@ -50,6 +51,13 @@ const friendList = [
     unit: '—',
     startDate: '2026-11-02',
     endDate: '2027-11-02',
+  },
+  {
+    id: 'dmetroid',
+    name: 'Дметроид',
+    unit: 'Барановичи',
+    startDate: '2026-10-26',
+    endDate: '2027-10-26',
   },
 ]
 
