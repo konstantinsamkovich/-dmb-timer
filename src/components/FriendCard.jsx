@@ -1,6 +1,7 @@
 import Avatar from './Avatar.jsx'
 import {
   daysLabel,
+  daysWord,
   formatDateRu,
   getCountdown,
   getServiceState,
@@ -14,17 +15,15 @@ function FriendCard({ friend, now, index }) {
   const countdown = getCountdown(upcoming ? untilStart : remaining)
   const progressPercent = ended ? 100 : Math.min(99.999, percent)
   const displayPercent = progressPercent.toFixed(3)
+  const countdownTitle = upcoming ? 'До призыва' : 'До демобилизации'
 
   const cells = [
-    { value: String(countdown.days), label: 'дней' },
     { value: pad(countdown.hours), label: 'часов' },
     { value: pad(countdown.minutes), label: 'минут' },
     { value: pad(countdown.seconds), label: 'секунд' },
   ]
 
-  const timerLabel = ended
-    ? 'Служба завершена'
-    : `${upcoming ? 'До призыва' : 'До демобилизации'} осталось ${daysLabel(countdown.days)}, ${countdown.hours} ч ${countdown.minutes} мин ${countdown.seconds} с`
+  const timerLabel = `${countdownTitle} осталось ${daysLabel(countdown.days)}, ${countdown.hours} ч ${countdown.minutes} мин ${countdown.seconds} с`
 
   const statusText = ended ? 'ДМБ!' : upcoming ? 'Ждёт призыва' : 'На службе'
   const statusClass = ended ? ' status-done' : upcoming ? ' status-upcoming' : ''
@@ -65,12 +64,21 @@ function FriendCard({ friend, now, index }) {
           </div>
         ) : (
           <div className="countdown" role="timer" aria-live="off" aria-label={timerLabel}>
-            {cells.map((cell) => (
-              <div className="time-cell" key={cell.label}>
-                <span className="time-value">{cell.value}</span>
-                <span className="time-label">{cell.label}</span>
+            <div className="countdown-display" aria-hidden="true">
+              <p className="countdown-title">{countdownTitle}</p>
+              <div className="countdown-days">
+                <span className="countdown-day-value">{countdown.days}</span>
+                <span className="countdown-day-label">{daysWord(countdown.days)}</span>
               </div>
-            ))}
+              <div className="countdown-clock">
+                {cells.map((cell) => (
+                  <div className="time-cell" key={cell.label}>
+                    <span className="time-value">{cell.value}</span>
+                    <span className="time-label">{cell.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 

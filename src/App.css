@@ -366,9 +366,54 @@
 .countdown {
   position: relative;
   z-index: 1;
+  overflow: hidden;
+  border: 1px solid var(--cell-border);
+  border-radius: 18px;
+  background: linear-gradient(160deg, var(--cell-bg-start), var(--cell-bg-end));
+  box-shadow: inset 0 1px 0 var(--inset-highlight);
+  text-align: center;
+}
+
+.countdown-display {
+  padding-top: 16px;
+}
+
+.countdown-title {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.countdown-days {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px 8px;
+  padding: 5px 8px 13px;
+}
+
+.countdown-day-value {
+  color: var(--sky-bright);
+  font-size: clamp(48px, 6vw, 60px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-day-label {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.countdown-clock {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--cell-border);
 }
 
 .time-cell {
@@ -377,16 +422,16 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 12px 4px 10px;
-  border: 1px solid var(--cell-border);
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--cell-bg-start), var(--cell-bg-end));
-  box-shadow: inset 0 1px 0 var(--inset-highlight);
+  padding: 10px 3px;
+}
+
+.time-cell + .time-cell {
+  border-left: 1px solid var(--cell-border);
 }
 
 .time-value {
   color: var(--time-value);
-  font-size: clamp(26px, 2.4vw, 32px);
+  font-size: 25px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -394,16 +439,10 @@
   text-shadow: 0 2px 18px var(--time-glow);
 }
 
-.time-cell:first-child .time-value {
-  color: var(--sky-bright);
-}
-
 .time-label {
-  color: var(--muted-dim);
-  font-size: 9px;
+  color: var(--muted);
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
 }
 
 /* ---------- Demob state ---------- */
@@ -856,19 +895,6 @@
     gap: 5px;
     padding: 5px 8px;
     font-size: 9px;
-  }
-
-  .time-cell {
-    padding: 11px 3px 9px;
-  }
-
-  .time-value {
-    font-size: 28px;
-  }
-
-  .time-label {
-    font-size: 8px;
-    letter-spacing: 0.1em;
   }
 
   .date-value {

@@ -1,4 +1,5 @@
 export const DAY_MS = 24 * 60 * 60 * 1000
+const MINSK_OFFSET_MS = 3 * 60 * 60 * 1000
 
 const MONTHS = [
   'января',
@@ -16,25 +17,33 @@ const MONTHS = [
 ]
 
 function parseDate(isoDate) {
-  const [year, month, day] = isoDate.split('-').map(Number)
-  return new Date(year, month - 1, day)
+  const date = new Date(`${isoDate}T00:00:00Z`)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)
+    || !Number.isFinite(date.getTime())
+    || date.toISOString().slice(0, 10) !== isoDate) {
+    throw new RangeError(`Некорректная дата: ${isoDate}`)
+  }
+  return date
 }
 
 export function formatDateRu(isoDate) {
   const date = parseDate(isoDate)
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${day} ${MONTHS[date.getMonth()]} ${date.getFullYear()}`
+  const day = String(date.getUTCDate()).padStart(2, '0')
+  return `${day} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`
 }
 
 export function getDaysSince(isoDate, now) {
-  const start = parseDate(isoDate).getTime()
+  const start = parseDate(isoDate).getTime() - MINSK_OFFSET_MS
   return Math.max(0, Math.floor((now - start) / DAY_MS))
 }
 
 export function getServiceState(friend, now) {
-  const start = parseDate(friend.startDate).getTime()
-  const end = parseDate(friend.endDate).getTime()
+  const start = parseDate(friend.startDate).getTime() - MINSK_OFFSET_MS
+  const end = parseDate(friend.endDate).getTime() - MINSK_OFFSET_MS
   const total = end - start
+  if (total <= 0) {
+    throw new RangeError(`${friend.id}: дата ДМБ должна быть позже даты призыва`)
+  }
   const remaining = end - now
   const untilStart = start - now
   const started = now >= start
@@ -60,7 +69,7 @@ export function getServiceState(friend, now) {
 }
 
 export function getCountdown(remainingMs) {
-  const totalSeconds = Math.floor(remainingMs / 1000)
+  const totalSeconds = Math.max(0, Math.ceil(remainingMs / 1000))
 
   return {
     days: Math.floor(totalSeconds / 86400),

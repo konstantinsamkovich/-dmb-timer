@@ -37,8 +37,8 @@ function App() {
 
       active += 1
       const daysLeft = Math.ceil(state.remaining / DAY_MS)
-      if (!closest || daysLeft < closest.daysLeft) {
-        closest = { daysLeft, name: friend.name.split(' ')[0] }
+      if (!closest || state.end < closest.end) {
+        closest = { daysLeft, end: state.end, name: friend.name }
       }
     }
 
@@ -69,7 +69,7 @@ function App() {
         <div className="hero-stats">
           <div className="stat">
             <span className="stat-value">{friends.length}</span>
-            <span className="stat-label">друга в списке</span>
+            <span className="stat-label">таймеров службы</span>
           </div>
           <span className="stat-divider" aria-hidden="true" />
           <div className="stat">
@@ -82,7 +82,7 @@ function App() {
               {nearest ? daysLabel(nearest.daysLeft) : '—'}
             </span>
             <span className="stat-label">
-              {nearest ? `до ДМБ ${nearest.name}` : 'все уже дома'}
+              {nearest ? `до ДМБ · ${nearest.name}` : 'нет активных таймеров ДМБ'}
             </span>
           </div>
         </div>
